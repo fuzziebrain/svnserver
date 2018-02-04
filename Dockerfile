@@ -1,6 +1,6 @@
 FROM oraclelinux:7-slim
 
-MAINTAINER Adrian Png <adrian.png@fuzziebrain.com>
+LABEL maintainer="Adrian Png <adrian.png@fuzziebrain.com>"
 
 ENV username dev
 ENV password securepassword
@@ -20,7 +20,7 @@ RUN yum install -y httpd subversion mod_dav_svn; \
     mkdir -p /etc/svn; \
     cd /etc/svn; \
     htpasswd -cb svn-auth ${username} ${password}; \
-    chown root:apache svn-auth; \
+    chown root:apache svn-auth 
 
 COPY svn-acl.conf /etc/svn
 
