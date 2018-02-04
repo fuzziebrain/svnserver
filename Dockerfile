@@ -28,6 +28,12 @@ RUN sed -i s/#USERNAME#/${username}/ /etc/svn/svn-acl.conf;
 
 COPY svn-repos.conf /etc/httpd/conf.d
 
+RUN mkdir -p /var/svn/scripts
+
+COPY createRepo.sh /var/svn/scripts
+
+RUN chmod a+x /var/svn/scripts/*
+
 EXPOSE 80
 
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
