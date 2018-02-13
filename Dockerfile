@@ -20,7 +20,7 @@ RUN yum install -y httpd subversion mod_dav_svn; \
     mkdir -p /etc/svn; \
     cd /etc/svn; \
     htpasswd -cb svn-auth ${username} ${password}; \
-    chown root:apache svn-auth 
+    chown root:apache svn-auth
 
 COPY svn-acl.conf /etc/svn
 
@@ -31,6 +31,8 @@ COPY svn-repos.conf /etc/httpd/conf.d
 RUN mkdir -p /var/svn/scripts
 
 COPY createRepo.sh /var/svn/scripts
+
+COPY createUsers.sh /var/svn/scripts
 
 RUN chmod a+x /var/svn/scripts/*
 
